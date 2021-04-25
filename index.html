@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pull Request dashoard</title>
+  <style>
+    #pull-requests {
+        list-style-type: none;
+    }
+
+    .pull-request {
+        border: 1px solid gray;
+        border-radius: 1em;
+        padding: 1em;
+        margin-bottom: 1em;
+    }
+  </style>
 </head>
 <body>
   <div id="results">
@@ -24,7 +36,7 @@
                 htmlOut += `<li class="pull-request"><div class="title"><a href="${pull.url}">${pull.title}</a></div><div class="pull.body">${pull.body}</div></li>`;
             })
 
-            results.innerHTML = `<ul>${htmlOut}</ul>`;
+            results.innerHTML = `<ul id="pull-requests">${htmlOut}</ul>`;
         })
         .catch(error => console.log(error))
     });
