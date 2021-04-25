@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pull Request dashoard</title>
+</head>
+<body>
+  <div id="results">
+  </div>
+
+  <script>
+    const searchQueryURL = 'https://api.github.com/repos/code-ready/crc/pulls';
+
+    window.addEventListener('DOMContentLoaded', function(e) {
+      return fetch(searchQueryURL)
+        .then(response => response.json())
+        .then(data => {
+            let results = document.querySelector('#results')
+            let htmlOut = ""
+            
+            data.forEach(pull => {
+                console.log(pull)
+                htmlOut += `<li class="pull-request"><div class="title"><a href="${pull.url}">${pull.title}</a></div><div class="pull.body">${pull.body}</div></li>`;
+            })
+
+            results.innerHTML = `<ul>${htmlOut}</ul>`;
+        })
+        .catch(error => console.log(error))
+    });
+  </script>
+</body>
+</html> 
