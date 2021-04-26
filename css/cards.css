@@ -1,0 +1,42 @@
+.cards {
+    display:inline-block;
+}
+
+.card {
+    position: relative;
+    float:left;
+    margin: 10px;
+    border: 1px solid black;
+    width: 220px;
+    height: 202px;
+    text-align: center;
+    font-family: arial;
+    padding: 0px;
+}
+
+.card .title a {
+    text-decoration-line: none;
+}
+
+.card p.state {
+    position: absolute;
+    bottom: -18px;
+    border: none;
+    padding: 10px 0px 10px 0px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
+
+.pass {
+    background-color: green;
+}
+
+.fail {
+    background-color: red;
+}
+
+.unknown {
+    background-color: gray;
+}
