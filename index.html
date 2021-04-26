@@ -1,44 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE html public "Gerard Braad"> 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pull Request dashoard</title>
-    <style>
-        #pull-requests, #projects {
-            list-style-type: none;
-        }
-
-        #projects li {
-            display: inline-block;
-        }
-
-        .pull-request {
-            border: 1px solid gray;
-            border-radius: 1em;
-            padding: 1em;
-            margin-bottom: 1em;
-        }
-
-        button {
-            width: 7em;
-            background-color: white;
-            border: 1px solid gray;
-            border-radius: 0.5em;
-            color: black;
-            padding: 10px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            transition-duration: 0.5s;
-        }
-
-        button:hover {
-            background-color: lightskyblue;
-            color: white
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="description" content="A webapp to show status of pull requests">
+    <meta name="HandheldFriendly" content="True">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/default.css" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
@@ -50,45 +20,9 @@
     <div id="results">
     </div>
 
-    <script>
-        var PullRequestController = function() {
-
-            var query = function(organisation, project) {
-                return fetch(`https://api.github.com/repos/${organisation}/${project}/pulls`)
-                    .then(response => response.json())
-                    .then(data => {
-                        let results = document.querySelector('#results')
-                        let htmlOut = ""
-                        
-                        data.forEach(pull => {
-                            console.log(pull)
-                            let markedBody = marked(pull.body)
-                            htmlOut += `<li class="pull-request"><div class="pull-request-title"><a href="${pull.html_url}">${pull.title}</a></div><div class="pull-request-body">${markedBody}</div></li>`;
-                        })
-
-                        results.innerHTML = `<ul id="pull-requests">${htmlOut}</ul>`;
-                    })
-                    .catch(error => console.log(error))
-            }
-
-            return {
-                Query: query
-            };
-        }
-
-        var prController = new PullRequestController();
-
-        window.addEventListener('DOMContentLoaded', function(e) {
-            prController.Query("code-ready", "crc");
-        });
-
-        document.querySelector('#project-crc').onclick= function(e) {
-            prController.Query("code-ready", "crc");
-        }
-
-        document.querySelector('#project-snc').onclick= function(e) {
-            prController.Query("code-ready", "snc");
-        }
-    </script>
+    <!-- application logic -->
+    <script src="js/github.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html> 
