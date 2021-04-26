@@ -1,47 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pull Request dashoard</title>
-  <style>
-    #pull-requests {
-        list-style-type: none;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pull Request dashoard</title>
+    <style>
+        #pull-requests, #projects {
+            list-style-type: none;
+        }
 
-    .pull-request {
-        border: 1px solid gray;
-        border-radius: 1em;
-        padding: 1em;
-        margin-bottom: 1em;
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        #projects li {
+            display: inline-block;
+        }
+
+        .pull-request {
+            border: 1px solid gray;
+            border-radius: 1em;
+            padding: 1em;
+            margin-bottom: 1em;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-  <div id="results">
-  </div>
+    <ul id="projects">
+        <li><button id="project-crc">CRC</button></li>
+        <li><button id="project-snc">snc</button></li>
+    </ul>
 
-  <script>
-    const searchQueryURL = 'https://api.github.com/repos/code-ready/crc/pulls';
+    <div id="results">
+    </div>
 
-    window.addEventListener('DOMContentLoaded', function(e) {
-      return fetch(searchQueryURL)
-        .then(response => response.json())
-        .then(data => {
-            let results = document.querySelector('#results')
-            let htmlOut = ""
-            
-            data.forEach(pull => {
-                console.log(pull)
-                let markedBody = marked(pull.body)
-                htmlOut += `<li class="pull-request"><div class="pull-request-title"><a href="${pull.html_url}">${pull.title}</a></div><div class="pull-request-body">${markedBody}</div></li>`;
-            })
+    <script>
+        var PullRequestController = function() {
 
-            results.innerHTML = `<ul id="pull-requests">${htmlOut}</ul>`;
-        })
-        .catch(error => console.log(error))
-    });
-  </script>
+            var query = function(organisation, project) {
+                return fetch(`https://api.github.com/repos/${organisation}/${project}/pulls`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let results = document.querySelector('#results')
+                        let htmlOut = ""
+                        
+                        data.forEach(pull => {
+                            console.log(pull)
+                            let markedBody = marked(pull.body)
+                            htmlOut += `<li class="pull-request"><div class="pull-request-title"><a href="${pull.html_url}">${pull.title}</a></div><div class="pull-request-body">${markedBody}</div></li>`;
+                        })
+
+                        results.innerHTML = `<ul id="pull-requests">${htmlOut}</ul>`;
+                    })
+                    .catch(error => console.log(error))
+            }
+
+            return {
+                Query: query
+            };
+        }
+
+        var prController = new PullRequestController();
+
+        window.addEventListener('DOMContentLoaded', function(e) {
+            prController.Query("code-ready", "crc");
+        });
+
+        document.querySelector('#project-crc').onclick= function(e) {
+            prController.Query("code-ready", "crc");
+        }
+
+        document.querySelector('#project-snc').onclick= function(e) {
+            prController.Query("code-ready", "snc");
+        }
+    </script>
 </body>
 </html> 
