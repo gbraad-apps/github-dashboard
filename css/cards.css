@@ -30,12 +30,16 @@
     font-size: 18px;
 }
 
-.pass {
+.success {
     background-color: green;
 }
 
-.fail {
+.failure {
     background-color: red;
+}
+
+.pending {
+    background-color: orange;
 }
 
 .unknown {
