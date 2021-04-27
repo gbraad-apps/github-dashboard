@@ -7,3 +7,7 @@ function cardTemplate(title, url, body, state) {
         </div>
     `
 }
+
+function labelTemplate(text, color) {
+    return `<span class="badge" style="background-color: #${color}">${text}</span>`;
+}

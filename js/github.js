@@ -8,10 +8,13 @@ var PullRequestController = function() {
                 let htmlOut = ""
                         
                 data.forEach(pull => {
-                    //console.log(pull)
-                    let markedBody = ""; //marked(pull.body)
-                    //htmlOut += `<li class="pull-request"><div class="pull-request-title"><a href="${pull.html_url}">${pull.title}</a></div><div class="pull-request-body">${markedBody}</div></li>`;
-                    htmlOut += cardTemplate(pull.title, pull.html_url, markedBody, "Unknown")
+                    console.log(pull)
+                    var labels = ""
+                    pull.labels.forEach(label => {
+                        labels += labelTemplate(label.name, label.color);
+                    })
+                    htmlOut += cardTemplate(pull.title,
+                        pull.html_url, labels, "Unknown")
                 })
 
                 results.innerHTML = `<ul id="pull-requests">${htmlOut}</ul>`;

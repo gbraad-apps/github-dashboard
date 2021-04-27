@@ -1,3 +1,7 @@
+body {
+    margin: 0px;
+}
+
 #pull-requests, #projects {
     list-style-type: none;
 }
@@ -30,4 +34,16 @@ button {
 button:hover {
     background-color: lightskyblue;
     color: white
+}
+
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
 }
