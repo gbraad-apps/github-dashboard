@@ -3,13 +3,18 @@
 <head>
     <title>Pull Request dashboard</title>
     <meta charset="UTF-8">
-    <meta name="description" content="A webapp to show status of pull requests">
+    <link rel="manifest" href="manifest.json">
+    <meta name="description" content="A webapp to show status of pull requests on GitHub">
     <meta name="HandheldFriendly" content="True">
     <meta http-equiv="cleartype" content="on">
+    <link rel="shortcut icon" href="icons/ghdash-icon-64.png">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/default.css" />
-    <link rel="stylesheet" href="css/cards.css" />
+    <link rel="stylesheet" href="style/default.css" type="text/css" />
+    <link rel="stylesheet" href="style/cards.css" type="text/css" />
+    <meta name="apple-mobile-web-app-title" content="GitHub Dashboard">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
 <body>
     <ul id="projects">
@@ -25,6 +30,7 @@
     <script src="js/github.js"></script>
     <script src="js/templates.js"></script>
     <script src="js/storage.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/application.js"></script>
+    <script src="js/serviceworker-register.js"></script>
 </body>
 </html> 

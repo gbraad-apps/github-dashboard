@@ -1,0 +1,21 @@
+{
+    "name": "Pull Request dashboard",
+    "short_name": "ghdash",
+    "description": "A webapp to show status of pull requests on GitHub",
+    "icons": [
+      {
+        "src": "icons/ghdash-icon-64.png",
+        "sizes": "64x64",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/ghdash-icon-144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#377AF3"
+  }

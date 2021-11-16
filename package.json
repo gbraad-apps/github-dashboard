@@ -1,6 +1,7 @@
 {
-  "name": "github-dashboard",
-  "version": "0.0.0",
+  "name": "ghdash",
+  "description": "A webapp to show status of pull requests on GitHub",
+  "version": "0.0.1",
   "private": false,
   "dependencies": {}
 }
